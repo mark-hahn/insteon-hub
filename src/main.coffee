@@ -5,39 +5,36 @@ Insteon = require("home-controller").Insteon
 plm = new Insteon()
 
 server = http.createServer (req, res) ->
-  [__, id, sync, device, cmd, data] = url.parse(req.url).path.split '/'
-  if id is '_' then id = null
-  if id isnt 'favicon.ico' then console.log 'req:', JSON.stringify {id, sync, device, cmd, data}
+  urlParts = url.parse req.url, true
+  [__, device, cmd, data...] = urlParts.pathname.split '/'
+  async = urlParts.query.async
+  if device isnt 'favicon.ico'
+    console.log 'req:', JSON.stringify {device, cmd, data, async}
   
   try
-    # console.log factory: plm[device].toString()
-    # console.log device:  (if (factory = plm[device]) then factory.call(plm,id) else plm).toString()
-    # console.log cmd:     (if (factory = plm[device]) then factory.call(plm,id) else plm)[cmd].toString()
-    
-    deviceInstance = (if (factory = plm[device]) then factory.call(plm, id) else plm)
-    syncResp = deviceInstance[cmd].call deviceInstance, data, (err, asyncResp) ->
-      if sync is 'async'
-        console.log {err, asyncResp}
+    deviceInstance = (if device is 'plm' then plm \
+                      else id = data.shift(); plm[device](id, plm))
+    console.log cmd, data
+    syncResp = deviceInstance[cmd].call deviceInstance, data..., (err, asyncResp) ->
+      console.log 'async cb', {async, err, asyncResp}
+      if async
         if err
           msg = 'async response error: ' + req.url + ', ' + JSON.stringify err
           console.log msg
           res.writeHead 404, 'Content-Type': 'text/text'
           res.end msg
-        else 
+        else  
           res.writeHead 200, 'Content-Type': 'text/json'
-          res.end JSON.stringify asyncResp
+          res.end JSON.stringify asyncResp ? error: 'No async response.'
+    if not async
+      res.writeHead 200, 'Content-Type': 'text/json'
+      res.end JSON.stringify syncResp ? error: 'No sync response.'
   catch e  
     console.log 'exception', e
-    console.trace()
-    sync = null
     msg = 'invalid request or no plm response: ' + req.url
     console.log msg
     res.writeHead 404, 'Content-Type': 'text/text'
     res.end msg
-  
-  if sync is 'sync'
-    res.writeHead 200, 'Content-Type': 'text/json'
-    res.end JSON.stringify syncResp
 
 plm.serial '/dev/insteon', ->
   console.log 'plm connected listening on 1342'
