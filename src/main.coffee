@@ -14,9 +14,9 @@ server = http.createServer (req, res) ->
   try
     deviceInstance = (if device is 'plm' then plm \
                       else id = data.shift(); plm[device](id, plm))
-    console.log cmd, data
+    # console.log cmd, data
     syncResp = deviceInstance[cmd].call deviceInstance, data..., (err, asyncResp) ->
-      console.log 'async cb', {async, err, asyncResp}
+      # console.log 'async cb', {async, err, asyncResp}
       if async
         if err
           msg = 'async response error: ' + req.url + ', ' + JSON.stringify err
