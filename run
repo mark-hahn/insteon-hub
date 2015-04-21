@@ -1,4 +1,5 @@
-rsync -a /root/Dropbox/apps/insteon-hub ~/apps
+rsync -a --exclude .git --exclude .live-archive --exclude .gitignore --exclude insteon-ids \
+      /root/Dropbox/apps/insteon-hub  ~/apps
 kill $(pgrep -f /root/apps/insteon-hub/lib/main)
 set -e
 cd /root/apps/insteon-hub
