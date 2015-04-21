@@ -1,0 +1,6 @@
+rsync -a /root/Dropbox/apps/insteon-hub ~/apps
+kill $(pgrep -f /root/apps/insteon-hub/lib/main)
+set -e
+cd /root/apps/insteon-hub
+coffee -co lib src/*.coffee
+node /root/apps/insteon-hub/lib/main

@@ -1,0 +1,16 @@
+furnace relay A - thermostat      28.AB.42  EZIO4O
+furnace relay B - dampers         28.AB.8f  EZIO4O
+guest   PowerLinc USB Modem (PLM) 24.13.FD  PLM
+master  Master Dimmer             24.E3.63  Switchlinc Dimmer
+master  Master Lights Remote      1C.5A.16  Mini Remote Switch
+master  Control Remote            27.17.8D  Mini Remote 8 Scene
+tv      Lights Remote 1           27.0B.8A  Mini Remote 4 Scene
+tv      Lights Remote 2           27.0B.00  Mini Remote 4 Scene
+tv      Lft Front Bulb            29.7E.BF  LED PAR38 Bulb
+tv      Mid Front Bulb            29.80.2B  LED PAR38 Bulb
+tv      Rgt Front Bulb            29.82.43  LED PAR38 Bulb
+tv      Lft Rear  Bulb            29.82.C1  LED PAR38 Bulb
+tv      Mid Rear  Bulb            29.8C.DA  LED PAR38 Bulb
+tv      Rgt Rear  Bulb            29.81.4C  LED PAR38 Bulb
+tv      TV Room Hall  Door Remote 29.07.58  Switchlinc Dimmer
+tv      TV Room Front Door Remote 29.02.A6  Switchlinc Dimmer
