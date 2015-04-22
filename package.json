@@ -1,6 +1,6 @@
 {
     "name": "insteon-hub",
-    "version": "0.1.1",
+    "version": "0.1.2",
     "main": "lib/main.js",
     "author": "Mark Hahn <mark@hahnca.com>",
     "description": "A server to allow multiple insteon apps to share a PLM",
