@@ -3,3 +3,7 @@ daemon
 lib/**
 *.png
 *.log
+run
+insteon-ids
+sync
+

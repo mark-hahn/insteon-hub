@@ -1,7 +1,7 @@
-rsync -a --exclude .git --exclude .live-archive --exclude .gitignore --exclude insteon-ids \
-      /root/Dropbox/apps/insteon-hub  ~/apps
+rsync -a --exclude .live-archive --exclude insteon-ids \
+      /root/Dropbox/apps/insteon-hub/  ~/apps/insteon-hub/
 kill $(pgrep -f /root/apps/insteon-hub/lib/main)
 set -e
 cd /root/apps/insteon-hub
 coffee -co lib src/*.coffee
-node /root/apps/insteon-hub/lib/main
+node /root/apps/insteon-hub/lib/main.js /dev/insteon 1342
