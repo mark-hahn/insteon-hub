@@ -11,9 +11,6 @@ port ?= 3000
 
 dbg.log = console.log.bind console
 
-console.log 'starting v1'
-dbg 'starting'
-
 server = http.createServer (req, res) ->
   urlParts = url.parse req.url, true
   [__, device, cmd, data...] = urlParts.pathname.split '/'
@@ -24,7 +21,6 @@ server = http.createServer (req, res) ->
   try
     deviceInstance = (if device is 'plm' then plm \
                       else id = data.shift(); plm[device](id, plm))
-    dbg {cmd, id, data}
     syncResp = deviceInstance[cmd].call deviceInstance, data..., (err, asyncResp) ->
       dbg 'async cb', {async, err, asyncResp}
       if async

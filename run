@@ -1,13 +1,9 @@
-export DEBUG=insteon-hub
-# export DEBUG_FD=3
-echo "$DEBUG $DEBUG_FD"
-
 rsync -a --exclude .live-archive --exclude insteon-ids \
       /root/Dropbox/apps/insteon-hub/  ~/apps/insteon-hub/
 kill $(pgrep -f /root/apps/insteon-hub/lib/main)
 set -e
 cd /root/apps/insteon-hub
 coffee -co lib src/*.coffee
-# node /root/apps/insteon-hub/lib/main.js /dev/insteon 1342 3>> hub.log
 nohup node /root/apps/insteon-hub/lib/main.js /dev/insteon 1342 >> hub.log &
 
+node /root/apps/insteon-hub/lib/main.js /dev/insteon 1342
