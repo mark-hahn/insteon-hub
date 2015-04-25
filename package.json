@@ -1,6 +1,23 @@
 {
-  "dependencies": {
-    "home-controller": "*",
-    "express": "*"
+    "name": "insteon-hub",
+    "version": "0.1.1",
+    "main": "lib/main.js",
+    "author": "Mark Hahn <mark@hahnca.com>",
+    "description": "A server to allow multiple insteon apps to share a PLM",
+    "keywords": [
+      "automation",
+      "insteon",
+      "hub"
+    ],
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/mark-hahn/insteon-hub"
+    },
+    "engines": {
+      "node": ">= 0.10"
+    },
+    "dependencies": {
+    "home-controller": ">=0.5.0",
+    "debug": "*"
   }
 }
